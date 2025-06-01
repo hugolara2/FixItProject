@@ -1,5 +1,11 @@
 class Tickets {
-   constructor(arr) {
-      let arr = arr
+   constructor() {
+      this.arr = []
    }
-} 
+
+   saveNewTicket(newTicket) {
+      this.arr.push(newTicket);
+   }
+}
+
+module.exports = Tickets;

@@ -1,0 +1,13 @@
+services:
+    app:
+        build: .
+        container_name: fixit-project-dev
+        ports:
+            - "3000:3000"
+        volumes:
+            - .:/usr/src/app
+            - /usr/src/app/node_modules
+
+        command: nodemon --legacy-watch --inspect=0.0.0.0 index.js
+        environment:
+            - NODE_ENV=develpment
