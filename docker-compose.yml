@@ -11,3 +11,17 @@ services:
         command: nodemon --legacy-watch --inspect=0.0.0.0 index.js
         environment:
             - NODE_ENV=develpment
+    postgres:
+        image: postgres:latest
+        container_name: fixit_db_container
+        restart: always
+        env_file:
+            - .env
+        ports:
+            - "5432:5432"
+        volumes:
+            - postgres_data:/var/lib/postgresql/data
+
+volumes:
+    postgres_data:
+        driver: local

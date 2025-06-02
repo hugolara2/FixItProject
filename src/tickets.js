@@ -6,6 +6,10 @@ class Tickets {
    saveNewTicket(newTicket) {
       this.arr.push(newTicket);
    }
+
+   showTickets(index) {
+      let value = this.arr[index].toString();
+   }
 }
 
 module.exports = Tickets;

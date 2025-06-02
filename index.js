@@ -5,15 +5,24 @@ const Tickets = require('./src/tickets')
 
 tickets = new Tickets();
 
-app.get('/', (req, res) => {
-   res.header('Content-Type: headers');
-   res.send('Hello World');
-});
+app.use(express.json());
 
 app.post('/NewTicket', (req, res) => {
-   tickets.saveNewTicket(req.body);
-   res.send('Ok');
-})
+   if (!req.body) {
+      res.status(400).send('Bad Request');
+   } else {
+      tickets.saveNewTicket(req.body);
+      return res.status(201).json({
+         status: "success",
+         message: "Ticket created",
+      });
+   }
+});
+
+app.get('/tickets', (req, res) => {
+   let response = tickets.showTickets(0);
+   res.send(response).status(200);
+});
 
 app.listen(port, () => {
    console.log(`Server listening on http://localhost:${port}`);
