@@ -2,6 +2,7 @@ services:
     app:
         build: .
         container_name: fixit-project-dev
+        hostname: fixit_backend
         ports:
             - "3000:3000"
         volumes:
@@ -10,13 +11,14 @@ services:
 
         command: nodemon --legacy-watch --inspect=0.0.0.0 index.js
         environment:
-            - NODE_ENV=develpment
+            - NODE_ENV=development
     postgres:
         image: postgres:latest
         container_name: fixit_db_container
+        hostname: fixit_db
         restart: always
         env_file:
-            - .env
+            - postgres.env
         ports:
             - "5432:5432"
         volumes:
